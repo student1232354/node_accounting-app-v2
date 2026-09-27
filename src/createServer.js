@@ -113,7 +113,7 @@ function createServer() {
     const expense = expenses.find((e) => e.id === Number(id));
 
     if (!expense) {
-      res.status(404).send('Expense not found');
+      res.status(404).send('User not found');
 
       return;
     }
@@ -124,16 +124,18 @@ function createServer() {
   app.post('/expenses', (req, res) => {
     const { userId, spentAt, title, amount, category, note } = req.body;
 
-    const sameUser = users.find((u) => u.id === Number(userId));
+    const NumberUserId = Number(userId);
+
+    const sameUser = users.find((u) => u.id === NumberUserId);
 
     if (!sameUser) {
-      res.status(400).send('User is already exist');
+      res.status(404).send('User is already exist');
 
       return;
     }
 
     if (!userId || !spentAt || !title || !amount || !category) {
-      res.status(404).send('Missing required fields');
+      res.status(400).send('Missing required fields');
 
       return;
     }

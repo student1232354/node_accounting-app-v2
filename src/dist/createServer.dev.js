@@ -132,7 +132,7 @@ function createServer() {
     });
 
     if (!expense) {
-      res.status(404).send('Expense not found');
+      res.status(404).send('User not found');
 
       return;
     }
@@ -148,18 +148,19 @@ function createServer() {
     const amount = _req$body.amount;
     const category = _req$body.category;
     const note = _req$body.note;
+    const NumberUserId = Number(userId);
     const sameUser = users.find(function (u) {
-      return u.id === Number(userId);
+      return u.id === NumberUserId;
     });
 
     if (!sameUser) {
-      res.status(400).send('User is already exist');
+      res.status(404).send('User is already exist');
 
       return;
     }
 
     if (!userId || !spentAt || !title || !amount || !category) {
-      res.status(404).send('Missing required fields');
+      res.status(400).send('Missing required fields');
 
       return;
     }
