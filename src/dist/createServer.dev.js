@@ -159,7 +159,7 @@ function createServer() {
     }
 
     if (!userId || !spentAt || !title || !amount || !category) {
-      res.status(400).send('Missing required fields');
+      res.status(404).send('Missing required fields');
 
       return;
     }
