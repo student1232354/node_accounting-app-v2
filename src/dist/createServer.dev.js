@@ -153,7 +153,7 @@ function createServer() {
     });
 
     if (!sameUser) {
-      res.status(400).send('Missing required fields');
+      res.status(400).send('User is already exist');
 
       return;
     }
@@ -173,12 +173,6 @@ function createServer() {
       category: category,
       note: note,
     };
-
-    if (!newExpense) {
-      res.status(400).send('Missing new expense');
-
-      return;
-    }
 
     expenses.push(newExpense);
     res.status(201).json(newExpense);

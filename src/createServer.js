@@ -127,7 +127,7 @@ function createServer() {
     const sameUser = users.find((u) => u.id === Number(userId));
 
     if (!sameUser) {
-      res.status(400).send('Missing required fields');
+      res.status(400).send('User is already exist');
 
       return;
     }
@@ -147,12 +147,6 @@ function createServer() {
       category,
       note,
     };
-
-    if (!newExpense) {
-      res.status(400).send('Missing new expense');
-
-      return;
-    }
 
     expenses.push(newExpense);
     res.status(201).json(newExpense);
